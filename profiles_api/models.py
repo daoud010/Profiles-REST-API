@@ -25,7 +25,11 @@ class UserProfileManager(BaseUserManager):
         """Create and save a new super user with git with given details"""
         user = self.create_user(email, name, password)
 
-        user.is_superuser = Abstr
+        user.is_superuser = True
+        user.is_staff = True
+        user.save(using=self.db)
+
+        return user
 
 
 class UserProfile(AbstractBaseUser, PermissionsMixin):
